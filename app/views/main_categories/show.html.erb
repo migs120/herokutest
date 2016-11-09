@@ -1,0 +1,96 @@
+<%if $admin%>
+<% @MCategoryItem = MainCategory.find(params[:id]).items %>
+<% @MCategoryItem.each do |this|%>
+<h3><%= link_to this.title, edit_main_category_path(params[:id])%></h3>
+<p><%= this.body%></p>
+  <% this.item_pics.each do |pic|%>
+      <%= link_to edit_main_category_main_category_pic_path(params[:id], pic.id) do %>
+        <img src="<%= pic.pic_url.url%>" style='height:100px; width:100px; margin-right:30px;'>
+    <%end%>
+  <%end%>
+<%end%>
+
+<br><br><button><%= link_to "Edit Category", edit_main_category_path(params[:id]) %></button>
+<%end%>
+<!-- ======================================================================================================= -->
+
+<%if !$admin%>
+<%@items = MainCategory.find(params[:id]).items%>
+<%if @items.any?%>
+<%@items.each do |item|%>
+<% if item.item_pics.any?%>
+<%pic = item.item_pics.first.pic_url.url%>
+<%pic_seed = item.item_pics.first.urlseed%>
+<%end%>
+    <div class="row">
+      <div class="medium-6 columns">
+        <img class="thumbnail" src="<%= item.item_pics.any? ? (pic == nil ? pic_seed : pic) : "https://placehold.it/650x350"%>">
+        <div class="row small-up-4">
+          <div class="column">
+            <img class="thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRC4Iwiwxr-myVqwN_s-u7gRUa_WA_sjWPNCv3fveujkk3_McEi">
+          </div>
+          <div class="column">
+            <img class="thumbnail" src="https://placehold.it/250x200">
+          </div>
+          <div class="column">
+            <img class="thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRC4Iwiwxr-myVqwN_s-u7gRUa_WA_sjWPNCv3fveujkk3_McEi">
+          </div>
+          <div class="column">
+            <img class="thumbnail" src="https://placehold.it/250x200">
+          </div>
+        </div>
+      </div>
+      <div class="medium-6 large-5 columns">
+        <h3><%= item.title %></h3>
+        <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
+
+
+
+        
+
+      <%= form_for current_order.order_items.new, remote: true do |f| %>
+      <div class="row">
+          <div class="small-3 columns">
+          <label for="middle-label" class="middle">Quantity</label>
+             <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+          </div>
+          <div class="small-9 columns"> 
+          </div>
+      </div>
+
+      <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency item.price %></span></h4>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <%= f.hidden_field :item_id, value: item.id %>
+            <%= f.submit "Add to Cart", class: "button large expanded" %>
+          </div>
+        </div>
+      <% end %>
+
+        <div class="small secondary expanded button-group">
+            <a class="button">Facebook</a>
+            <a class="button">Twitter</a>
+            <a class="button">Yo</a>
+          </div>
+        </div>
+      
+      <div class="col-12  vhcenterp" style="height:70px;margin-top:20px;">
+           <div class="col-10 button col-p-10 vhcenters" style="height:80%;  background-color:lightgrey;"><h3 class="vhcenters">More info and Reviews!!</h3>  </div>
+        
+        </div>
+      
+      
+    </div>
+<div class="col-12" style="height:100px;"></div>
+<hr>
+
+<%end%>
+<%else%>
+
+<div class="col-12 vhcenterp seebox"  style="height:400px;">
+    <div class="col-10 vhcenters seebox"><h1 class="center">We are Sorry :( But this category has no items yet.</h1>
+      </div>
+</div>
+
+<%end%>
+<%end%>
