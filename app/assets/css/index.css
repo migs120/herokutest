@@ -2864,7 +2864,7 @@ screen and (min-width:75em) {
     padding-right: 1rem
 }
 
-.media-object-section:last-child:not(+&:first-child) {
+.media-object-section:last-child:not(:first-child) {
     padding-left: 1rem
 }
 
