@@ -15,7 +15,7 @@ gem 'rails', '4.1.0'
 
 gem 'activemerchant', '~> 1.60'
 
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
