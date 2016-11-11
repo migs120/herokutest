@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import "main_categories/index";
 
 * {
     box-sizing: border-box;
@@ -11,7 +10,6 @@
 }
 [class*="col-"] {
     float: left;
-    
     padding: .3px;
 }
 
@@ -822,3 +820,13 @@ html {
 .long-delay {
   -webkit-animation-delay: 700ms !important;
           animation-delay: 700ms !important; }
+
+
+
+
+
+
+
+
+
+
