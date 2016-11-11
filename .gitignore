@@ -18,3 +18,7 @@
 # Ignore application configuration
 /config/application.yml
 /vendor/assets/bower_components
+
+# Ignore rvm gemsets
+.ruby-gemset
+.ruby-version

@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20161105090849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.decimal  "price"
+    t.integer  "price"
     t.boolean  "active"
     t.integer  "quantity"
   end
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20161105090849) do
   add_index "order_checkout_transactions", ["order_checkout_id"], name: "index_order_checkout_transactions_on_order_checkout_id"
 
   create_table "order_checkouts", force: true do |t|
-    t.integer  "Order_id"
+    t.integer  "order_id"
     t.string   "ip_address"
     t.string   "first_name"
     t.string   "last_name"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20161105090849) do
     t.boolean  "paid_shipped_n_done"
   end
 
-  add_index "order_checkouts", ["Order_id"], name: "index_order_checkouts_on_Order_id"
+  add_index "order_checkouts", ["order_id"], name: "index_order_checkouts_on_order_id"
 
   create_table "order_items", force: true do |t|
     t.integer  "item_id"
